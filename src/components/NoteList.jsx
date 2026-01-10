@@ -6,9 +6,10 @@ export default function NoteList({ notes, deleteNote }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLoading(false);
     }, 1200);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
