@@ -1,0 +1,11 @@
+.noteitem {
+  border: 1px solid black;
+  background-color: lightgreen;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.noteitem .title {
+  font-weight: 700;
+  font-size: 1.2rem;
+}

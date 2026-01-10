@@ -1,0 +1,21 @@
+.notelist {
+  border: 1px solid black;
+  width: 30rem;
+  height: fit-content;
+  min-height: 10rem;
+  background-color: lightcoral;
+  border-radius: 0.5rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.emptystate {
+  text-align: center;
+  line-height: 10rem;
+  font-size: 1.5rem;
+  color: white;
+}

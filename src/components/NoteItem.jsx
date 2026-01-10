@@ -1,8 +1,12 @@
-export default function NoteItem({ note }) {
+import Button from "./Button";
+import "./NoteItem.css";
+
+export default function NoteItem({ note, deleteNote }) {
   return (
-    <div key={note?.id}>
-      <div>{note?.title}</div>
-      <div>{note?.description}</div>
+    <div className="noteitem" key={note?.id}>
+      <div className="title">Title: {note?.title}</div>
+      <div className="description"> Description: {note?.description}</div>
+      <Button text="Delete" onClick={() => deleteNote(note?.id)} />
     </div>
   );
 }

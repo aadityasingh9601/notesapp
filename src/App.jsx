@@ -7,12 +7,21 @@ function App() {
   const [notes, setNotes] = useState([]);
 
   const saveNote = (newNote) => {
-    setNotes([...notes, newNote]);
+    setNotes((prevNotes) => {
+      return [...prevNotes, { id: Math.random(), ...newNote }];
+    });
+  };
+
+  const deleteNote = (noteId) => {
+    setNotes((prevNotes) => {
+      return prevNotes.filter((note) => note.id != noteId);
+    });
   };
   return (
-    <div>
+    <div className="mainBox">
+      <h1>Notes Management Application</h1>
       <NoteForm saveNote={saveNote} />
-      <NoteList notes={notes} />
+      <NoteList notes={notes} deleteNote={deleteNote} />
     </div>
   );
 }

@@ -1,39 +1,53 @@
-import Input from "./Input";
+import "./NoteForm.css";
 import Button from "./Button";
-import Textarea from "./Textarea";
+
 import { useState } from "react";
 
 export default function NoteForm({ saveNote }) {
   const [formData, setformData] = useState({
-    id: Math.random(),
     title: "",
     description: "",
   });
 
-  const handleChange = (e) => {
-    console.log(e);
-    const target = e.target.name;
-    const value = e.target.value;
-
-    setformData[target] = value;
+  const handleChange = (event) => {
+    let name = event.target.name;
+    let value = event.target.value;
+    setformData((prevFormData) => {
+      return { ...prevFormData, [name]: value };
+    });
   };
   return (
     <div>
-      <form onSubmit={() => saveNote(formData)}>
-        <Input
-          placeholder="Enter your title"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-        />
-        <Textarea
-          placeholder="Enter your description"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-        <Button text="Submit" />
-      </form>
+      <h2>Add new note</h2>
+      <div className="noteform">
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            saveNote(formData);
+            setformData({
+              title: "",
+              description: "",
+            });
+          }}
+        >
+          <input
+            placeholder="Enter your title"
+            name="title"
+            onChange={handleChange}
+            value={formData?.title}
+          />
+          {formData.title == "" && (
+            <div className="error">Title can't be empty!</div>
+          )}
+          <textarea
+            placeholder="Enter description"
+            name="description"
+            onChange={handleChange}
+            value={formData?.description}
+          ></textarea>
+          <Button text="Submit" disabled={formData.title == ""} />
+        </form>
+      </div>
     </div>
   );
 }
